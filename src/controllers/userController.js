@@ -5,6 +5,7 @@ import multer from "multer";
 import fs from "fs"
 import path from "path"
 export const loginUser = asyncHandler(async (req, res) => {
+  try{
   const { email, password } = req.body;
   const user = await User.findOne({ email });
 
@@ -21,6 +22,10 @@ export const loginUser = asyncHandler(async (req, res) => {
   } else {
     res.status(401);
     throw new Error("Invalid email or password");
+  }
+  }
+  catch(error){
+    console.log(error);
   }
 }); 
 
